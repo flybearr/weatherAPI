@@ -59,7 +59,12 @@ export default function weather() {
     //幾月幾號
     const howDates = locationWeather.length !== 0 &&
         dayjs(locationWeather[choseCity].weatherElement[0].time[week].startTime.split(' ')[0]).format('YYYY/MM/DD')
-
+    //startTimes
+    const startTimes = locationWeather.length !== 0 &&
+    locationWeather[choseCity].weatherElement[0].time[week].startTime.split(' ')[1]
+    //endTimes
+    const endTimes = locationWeather.length !== 0 &&
+    locationWeather[choseCity].weatherElement[0].time[week].endTime.split(' ')[1]
     //天氣描述
     const weatherState = locationWeather.length !== 0 &&
         locationWeather[choseCity].weatherElement[1].time[week].elementValue[0].value
@@ -128,12 +133,16 @@ export default function weather() {
                     plus()
                 }}><i className="fa-solid fa-arrow-right"></i></div>
             </div>
+            {/* 起始至結束時間 */}
+            <div>{startTimes} ~ {endTimes}</div>
             {/* 天氣描述*/}
             {weatherState}
+            <br />
             <br />
             <div className="icon">
             <img src={`/imgs/weather_icon/${codeType(codeSelectLocation)}.png`} alt="" />
             </div>
+            <br />
             <p>降雨機率{rain}%</p>
         </div>
     )
