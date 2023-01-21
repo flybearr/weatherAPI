@@ -140,7 +140,7 @@ export default function weather() {
             <br />
             <br />
             <div className="icon">
-                <img src={`/imgs/weather_icon/${codeType(codeSelectLocation)}.png`} alt={`${codeType(codeSelectLocation)}`} />
+                <img src={`${codeType(codeSelectLocation)}`} alt={`${codeType(codeSelectLocation)}`} />
             </div>
             <br />
             <p>降雨機率{rain}%</p>
