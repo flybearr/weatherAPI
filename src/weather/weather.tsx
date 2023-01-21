@@ -3,6 +3,11 @@ import '../styles/weather.scss'
 import axios from 'axios'
 import dayjs from 'dayjs'
 import weekday from 'dayjs/plugin/weekday'
+import isSunny from '/imgs/weather_icon/isSunny.png'
+import isCloudy from '/imgs/weather_icon/isCloudy.png'
+import isPartiallyClearWithRain from '/imgs/weather_icon/isPartiallyClearWithRain.png'
+import isThunderstorm from '/imgs/weather_icon/isPartiallyClearWithRain.png'
+import isSnowing from '/imgs/weather_icon/isSnowing.png'
 dayjs.extend(weekday)
 interface weather {
     time: number;
@@ -86,15 +91,15 @@ export default function weather() {
         +locationWeather[choseCity].weatherElement[1].time[week].elementValue[1].value
     const codeType = (codeSelectLocation: number | boolean) => {
         if (weatherTypes.isThunderstorm.includes(codeSelectLocation)) {
-            return 'isPartiallyClearWithRain'
+            return isThunderstorm
         } else if (weatherTypes.isSunny.includes(codeSelectLocation)) {
-            return 'isSunny'
+            return isSunny
         } else if (weatherTypes.isCloudy.includes(codeSelectLocation)) {
-            return 'isCloudy'
+            return isCloudy
         } else if (weatherTypes.isPartiallyClearWithRain.includes(codeSelectLocation)) {
-            return 'isPartiallyClearWithRain'
+            return isPartiallyClearWithRain
         } else if (weatherTypes.isSnowing.includes(codeSelectLocation)) {
-            return 'isSnowing'
+            return isSnowing
         } else {
             return
         }
@@ -140,7 +145,7 @@ export default function weather() {
             <br />
             <br />
             <div className="icon">
-                <img src={`${codeType(codeSelectLocation)}`} alt={`${codeType(codeSelectLocation)}`} />
+                <img src={`${codeType(codeSelectLocation)}`} alt="" />
             </div>
             <br />
             <p>降雨機率{rain}%</p>
