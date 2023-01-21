@@ -61,58 +61,58 @@ export default function weather() {
         dayjs(locationWeather[choseCity].weatherElement[0].time[week].startTime.split(' ')[0]).format('YYYY/MM/DD')
     //startTimes
     const startTimes = locationWeather.length !== 0 &&
-    locationWeather[choseCity].weatherElement[0].time[week].startTime.split(' ')[1]
+        locationWeather[choseCity].weatherElement[0].time[week].startTime.split(' ')[1]
     //endTimes
     const endTimes = locationWeather.length !== 0 &&
-    locationWeather[choseCity].weatherElement[0].time[week].endTime.split(' ')[1]
+        locationWeather[choseCity].weatherElement[0].time[week].endTime.split(' ')[1]
     //天氣描述
     const weatherState = locationWeather.length !== 0 &&
         locationWeather[choseCity].weatherElement[1].time[week].elementValue[0].value
 
     //天氣代碼
-    const weatherTypes :any = {
+    const weatherTypes: any = {
         isThunderstorm: [15, 16, 17, 18, 21, 22, 33, 34, 35, 36, 41],
         isSunny: [1, 2, 3],
         isCloudy: [4, 5, 6, 7, 24, 25, 26, 27, 28],
         isPartiallyClearWithRain: [
-        8, 9, 10, 11, 12, 13, 14, 19, 20, 29, 30, 31, 32, 38, 39,
+            8, 9, 10, 11, 12, 13, 14, 19, 20, 29, 30, 31, 32, 38, 39,
         ],
         isSnowing: [23, 37, 42],
     }
 
     //天氣代碼
     const codeSelectLocation =
-    locationWeather.length !== 0 &&
-    +locationWeather[choseCity].weatherElement[1].time[week].elementValue[1].value
-    const codeType = (codeSelectLocation:number|boolean)=> {
+        locationWeather.length !== 0 &&
+        +locationWeather[choseCity].weatherElement[1].time[week].elementValue[1].value
+    const codeType = (codeSelectLocation: number | boolean) => {
         if (weatherTypes.isThunderstorm.includes(codeSelectLocation)) {
-          return 'isPartiallyClearWithRain'
+            return 'isPartiallyClearWithRain'
         } else if (weatherTypes.isSunny.includes(codeSelectLocation)) {
-          return 'isSunny'
+            return 'isSunny'
         } else if (weatherTypes.isCloudy.includes(codeSelectLocation)) {
-          return 'isCloudy'
+            return 'isCloudy'
         } else if (weatherTypes.isPartiallyClearWithRain.includes(codeSelectLocation)) {
-          return 'isPartiallyClearWithRain'
+            return 'isPartiallyClearWithRain'
         } else if (weatherTypes.isSnowing.includes(codeSelectLocation)) {
-          return 'isSnowing'
-        }else{
+            return 'isSnowing'
+        } else {
             return
         }
-      }
-    
-      //降雨機率
-      const rain =
-      locationWeather.length !== 0 &&
-      +locationWeather[choseCity].weatherElement[0].time[week].elementValue[0].value
+    }
+
+    //降雨機率
+    const rain =
+        locationWeather.length !== 0 &&
+        +locationWeather[choseCity].weatherElement[0].time[week].elementValue[0].value
 
 
 
     useEffect(() => {
         getWeatherData()
     }, [])
-   
 
-    
+
+
 
     return (
         <div className='card'>
@@ -140,7 +140,7 @@ export default function weather() {
             <br />
             <br />
             <div className="icon">
-            <img src={`/imgs/weather_icon/${codeType(codeSelectLocation)}.png`} alt="" />
+                <img src={`/imgs/weather_icon/${codeType(codeSelectLocation)}.png`} alt={`${codeType(codeSelectLocation)}`} />
             </div>
             <br />
             <p>降雨機率{rain}%</p>
